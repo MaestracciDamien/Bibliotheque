@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.ArrayList;
+
 /**
  * Created by Damien on 09/10/2017.
  */
@@ -10,6 +12,10 @@ public class Livre {
     private String sujet;
     private int nbCopie;
 
+
+    public Livre(int ISBN) {
+        this.ISBN = ISBN;
+    }
 
     public Livre(int ISBN, String desc, String sujet, int nbCopie) {
 
@@ -62,5 +68,19 @@ public class Livre {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        Livre livre = (Livre) o;
+
+        return ISBN == livre.ISBN;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return ISBN;
+    }
 }

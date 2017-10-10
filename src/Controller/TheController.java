@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.Copie;
+import Model.Librairie;
 import Model.Livre;
 import View.TheView;
 
@@ -19,9 +21,10 @@ public class TheController {
     private Connection conn;
 
     private ControllerLivre CLivre;
+    private ControllerLibrairie CLib;
     private TheView view;
     public TheController() throws Exception {
-        view = new TheView();
+        //view = new TheView();
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -37,18 +40,27 @@ public class TheController {
             e.printStackTrace();
         }
         CLivre = new ControllerLivre(conn);
+        CLib = new ControllerLibrairie(conn);
         try {
-            Livre livre = CLivre.selectLivre(1501142976);
-            if (livre == null){
+            //Livre livre = CLivre.selectLivre(1501142976);
+            //CLib.getListeLivres();
+            Copie copie = new Copie(345339703,4567);
+            CLib.addCopie(copie);
+
+           /* if (livre == null){
                 throw new Exception("HAHA");
 
             }
             else
             {
                 view.afficheLivre(livre);
-            }
+            }*/
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        catch (Exception beta)
+        {
+            System.out.println(beta.toString());
         }
     }
 
